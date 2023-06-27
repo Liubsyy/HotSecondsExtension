@@ -29,6 +29,6 @@
 
 
 ### 扩展包开发例子
-
+[热部署velocity的html模板文件](https://github.com/Liubsyy/HotSecondsExtension/blob/master/doc/%E5%86%99%E6%89%A9%E5%B1%95%E5%8C%85%E4%BE%8B%E5%AD%90.md)
 
 
