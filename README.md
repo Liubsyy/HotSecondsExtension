@@ -1,4 +1,4 @@
-# HotSecondsExtension 插件扩展通用包
+# HotSecondsServer 插件扩展通用包
 
 这个工程主要是用于扩展HotSeconds热部署逻辑，兼容更多的第三方开源框架，大家可直接Fork项目提交代码，后续再合并一下，众人拾柴火焰高，本插件的理念是：一切皆可热部署。
 
