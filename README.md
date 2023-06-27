@@ -24,5 +24,11 @@
 >1.写一个类，实现 IHotExtHandler接口
 >
 >2.在hot-seconds-remote.xml中配置上面这个类
+> 
+> 然后启动项目即可
+
+
+### 扩展包开发例子
+
 
 
