@@ -13,7 +13,7 @@
 
 
 ## 本扩展包已支持
-| 开源组件     | Class                                 | 范围           |
+| 组件     | Class                                 | 范围           |
 |----------|---------------------------------------|--------------|
 | Velocity | com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear | 刷新html缓存     |
 | Mybatis  | com.liubs.hotseconds.extension.container.MyBatisRefresh | 一个demo，内核已支持 |
