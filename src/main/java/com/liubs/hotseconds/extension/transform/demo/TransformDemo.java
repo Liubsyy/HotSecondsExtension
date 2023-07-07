@@ -1,8 +1,8 @@
 package com.liubs.hotseconds.extension.transform.demo;
 
 import com.liubs.hotseconds.extension.annotations.RemoteMethodTest;
-import com.liubs.hotseconds.extension.transform.ClassTransform;
-import com.liubs.hotseconds.extension.transform.OnClassLoad;
+import com.liubs.hotseconds.extension.annotations.ClassTransform;
+import com.liubs.hotseconds.extension.annotations.OnClassLoad;
 import javassist.*;
 
 /**
@@ -13,7 +13,7 @@ import javassist.*;
 public class TransformDemo {
 
     /**
-     * 当 Boy类加载的时候触发，增加字段int age;
+     * 当 com.liubs.hotseconds.extension.transform.demo.Boy类初始化的时候触发这个函数调用，增加字段int age;
      * @param ctClass
      * @param classPool
      * @throws NotFoundException
