@@ -3,7 +3,7 @@ package com.liubs.hotseconds.extension.transform.demo;
 import com.liubs.hotseconds.extension.annotations.RemoteMethodTest;
 import com.liubs.hotseconds.extension.transform.ClassTransform;
 import com.liubs.hotseconds.extension.transform.OnClassLoad;
-import org.apache.ibatis.javassist.*;
+import javassist.*;
 import org.apache.ibatis.session.Configuration;
 
 import java.lang.reflect.Field;
