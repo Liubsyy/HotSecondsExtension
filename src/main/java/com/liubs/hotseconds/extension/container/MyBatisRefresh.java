@@ -17,9 +17,6 @@ import java.util.Set;
  * 这个例子仅供参考
  */
 public class MyBatisRefresh implements IHotExtHandler {
-    @Override
-    public void preHandle(ClassLoader classLoader, String path, byte[] content) {
-    }
 
     @Override
     public void afterHandle(ClassLoader classLoader, Class<?> aClass, String s, byte[] bytes) {
