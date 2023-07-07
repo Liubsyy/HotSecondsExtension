@@ -10,9 +10,6 @@ import java.util.Iterator;
  * velocity template cache clear, just clear html, css and js have no cache.
  */
 public class VelocityHtmlCacheClear implements IHotExtHandler {
-    @Override
-    public void preHandle(ClassLoader classLoader, String path, byte[] content) {
-    }
 
     @Override
     public void afterHandle(ClassLoader classLoader, Class<?> classz, String path, byte[] content) {
