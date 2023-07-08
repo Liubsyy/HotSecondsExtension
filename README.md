@@ -35,9 +35,9 @@
 >
 >2.在适当的时机注册这个类到 AllExtensionsManager
 > 
-> (1)可以在某个特殊类初始化的时候注册，demo: VelocityRegister
+> &nbsp; &nbsp; &nbsp; (1)可以在某个特殊类初始化的时候注册，demo: VelocityRegister
 > 
-> (2)也可以直接在AllExtensionsManager写死
+> &nbsp; &nbsp; &nbsp; (2)也可以直接在AllExtensionsManager写死
 > 
 > 然后启动项目即可
 
