@@ -17,6 +17,10 @@ public class AllExtensionsManager {
     private Map<Class<?>, IHotExtHandler> allHandlers = new ConcurrentHashMap<>();
 
     private static AllExtensionsManager instance = new AllExtensionsManager();
+    static {
+        //如果一定需要注册，写在这
+        //instance.addHotExtHandler(new com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear());
+    }
     public static AllExtensionsManager getInstance() {
         return instance;
     }

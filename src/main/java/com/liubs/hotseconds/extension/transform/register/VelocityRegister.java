@@ -1,4 +1,4 @@
-package com.liubs.hotseconds.extension.transform.velocity;
+package com.liubs.hotseconds.extension.transform.register;
 
 import com.liubs.hotseconds.extension.annotations.ClassTransform;
 import com.liubs.hotseconds.extension.annotations.OnClassLoad;
@@ -9,6 +9,7 @@ import javassist.*;
 /**
  * @author Liubsyy
  * @date 2023/7/8 9:17 PM
+ * 当检测到org.apache.velocity.runtime.RuntimeSingleton类加载时，那就是项目里使用了velocity
  **/
 @ClassTransform
 public class VelocityRegister {

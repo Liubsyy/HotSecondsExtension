@@ -21,12 +21,23 @@
 | Velocity | com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear | 刷新html缓存     |
 | Mybatis  | com.liubs.hotseconds.extension.container.MyBatisRefresh | 一个demo，内核已支持 |
 
+## 扩展包使用
+
+>1.pom引用本工程的包
+>
+>2.在hot-seconds-remote.xml中配置com.liubs.hotseconds.extension.AutoChoose
+>
+> 然后启动项目即可
 
 ## 扩展包开发步骤
 
 >1.写一个类，实现 IHotExtHandler接口
 >
->2.在hot-seconds-remote.xml中配置上面这个类
+>2.在适当的时机注册这个类到 AllExtensionsManager
+> 
+> (1)可以在某个特殊类初始化的时候注册，demo: VelocityRegister
+> 
+> (2)也可以直接在AllExtensionsManager写死
 > 
 > 然后启动项目即可
 

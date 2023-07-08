@@ -14,7 +14,7 @@ import java.util.Set;
 
 /**
  * mybatis配置.xml修改完热部署
- * 这个例子仅供参考
+ * 这个例子仅供参考学习使用，内核已经集成了
  */
 public class MyBatisRefresh implements IHotExtHandler {
 
