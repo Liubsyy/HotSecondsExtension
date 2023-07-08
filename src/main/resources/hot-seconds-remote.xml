@@ -17,6 +17,8 @@
     <!-- 这里的扩展classname是热加载某个文件的前置和后置操作,需要实现IHotExtHandler接口，复制IHotExtHandler.java到工程即可 -->
     <dev-ext>
 
+        <!-- 配置上AutoChoose，扩展包里的类智能加载 -->
+        <classname>com.liubs.hotseconds.extension.AutoChoose</classname>
     </dev-ext>
     
 </liubs>
