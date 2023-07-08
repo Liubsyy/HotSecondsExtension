@@ -12,6 +12,11 @@ import java.util.Iterator;
 public class VelocityHtmlCacheClear implements IHotExtHandler {
 
     @Override
+    public byte[] preHandle(ClassLoader classLoader, String path, byte[] content) {
+        return content;
+    }
+
+    @Override
     public void afterHandle(ClassLoader classLoader, Class<?> classz, String path, byte[] content) {
         if(!path.endsWith(".html")) {
             return;

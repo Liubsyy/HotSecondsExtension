@@ -14,9 +14,7 @@ public interface IHotExtHandler {
      * @param content
      * @return your modified bytes
      */
-    default byte[] preHandle(ClassLoader classLoader, String path, byte[] content){
-        return content;
-    }
+    byte[] preHandle(ClassLoader classLoader, String path, byte[] content);
 
     /**
      * after you hotswap file
