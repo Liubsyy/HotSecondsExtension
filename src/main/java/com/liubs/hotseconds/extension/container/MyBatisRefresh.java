@@ -19,11 +19,6 @@ import java.util.Set;
 public class MyBatisRefresh implements IHotExtHandler {
 
     @Override
-    public byte[] preHandle(ClassLoader classLoader, String path, byte[] content) {
-        return content;
-    }
-
-    @Override
     public void afterHandle(ClassLoader classLoader, Class<?> aClass, String s, byte[] bytes) {
         try {
             if(!s.endsWith(".xml")){
