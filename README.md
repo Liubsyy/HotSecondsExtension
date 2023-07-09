@@ -11,7 +11,7 @@
 | 开源组件                                         | 范围                              |
 |----------------------------------------------|---------------------------------|
 | Spring                                       | 包括Spring，SpringMVC，SpringBoot生态 |
-| MyBatis                                      | 支持新增/修改 接口和.xml文件            |
+| MyBatis                                      | 支持mapper新增/修改函数, 修改xml文件(扩展包已支持新增mapper和xml)  |
 | MyBatis Plus                                 | 同MyBatis                        |
 | Hibernate                                    | 支持Hibernate2和Hibernate3         |
 | Freemarker<br/>Thymeleaf<br/>Velocity-Spring | 刷新缓存                            |
@@ -20,6 +20,7 @@
 | 组件     | Class                                 | 范围           |
 |----------|---------------------------------------|--------------|
 | Velocity | com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear | 刷新html缓存     |
+| MyBatis | com.liubs.hotseconds.extension.container.MyBatisBeanRefresh | 新增mapper类，新增xml热部署     |
 
 <br>
 
@@ -27,7 +28,7 @@
 
 >1.pom引用本工程的包
 >
->2.在hot-seconds-remote.xml中配置com.liubs.hotseconds.extension.AutoChoose
+>2.在hot-seconds-remote.xml中配置 com.liubs.hotseconds.extension.AutoChoose，会自动智能选择需要的扩展组件
 >
 > 然后启动项目即可
 
@@ -37,7 +38,7 @@
 >
 >2.在适当的时机注册这个类到 AllExtensionsManager
 > 
-> &nbsp; &nbsp; &nbsp; (1)可以在某个特殊类初始化的时候注册，demo: VelocityRegister
+> &nbsp; &nbsp; &nbsp; (1)可以在某个特殊类初始化的时候注册，demo: VelocityRegistry
 > 
 > &nbsp; &nbsp; &nbsp; (2)也可以直接在AllExtensionsManager写死
 
