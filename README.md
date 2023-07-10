@@ -21,6 +21,7 @@
 |----------|---------------------------------------|--------------|
 | Velocity | com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear | 刷新html缓存     |
 | MyBatis | com.liubs.hotseconds.extension.container.MyBatisBeanRefresh | 新增mapper类，新增xml热部署     |
+| MyBatisPlus | 同MyBatis | 同MyBatis     |
 
 <br>
 
