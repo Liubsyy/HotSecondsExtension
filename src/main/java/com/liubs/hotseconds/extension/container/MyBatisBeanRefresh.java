@@ -5,12 +5,16 @@ import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.transform.mybatis.MyBatisClassPathMapperScannerPatch;
 import com.liubs.hotseconds.extension.transform.mybatis.MyBatisSpringBeanDefinition;
 import com.liubs.hotseconds.extension.util.ReflectUtil;
+import org.apache.ibatis.session.Configuration;
 import org.hotswap.agent.plugin.spring.scanner.ClassPathBeanDefinitionScannerAgent;
 import org.hotswap.agent.util.ReflectionHelper;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 
 /**
@@ -34,6 +38,23 @@ public class MyBatisBeanRefresh implements IHotExtHandler {
             return;
         }
         try {
+            Class<?> sqlSessionFactoryClz = Class.forName("org.apache.ibatis.session.defaults.DefaultSqlSessionFactory",true,classLoader);
+            Field staticConfiguration = null;
+            try{
+                staticConfiguration = sqlSessionFactoryClz.getDeclaredField("_staticConfiguration");
+            }catch (NoSuchFieldException ex) {
+                return;
+            }
+            Configuration configuration = ((ArrayList<Configuration>)staticConfiguration.get(null)).get(0);
+
+
+            //这里用类字符串判断是否mybatis plus，不引用mybatis plus的类，避免应用程序没有用mybatis plus而报错
+            if(configuration.getClass().getName().equals("com.baomidou.mybatisplus.core.MybatisConfiguration")) {
+                MyBatisPlusMapperUpdate.refreshMapper(configuration,classz);
+                //return;
+            }
+
+
             ClassPathBeanDefinitionScannerAgent scannerAgent = ClassPathBeanDefinitionScannerAgent.getInstance(MyBatisSpringBeanDefinition.getMapperScanner());
             BeanDefinition beanDefinition = scannerAgent.resolveBeanDefinition(bytes);
             if (beanDefinition != null) {
