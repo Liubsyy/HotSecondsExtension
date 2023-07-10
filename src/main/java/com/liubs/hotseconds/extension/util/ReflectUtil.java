@@ -19,6 +19,7 @@ public class ReflectUtil {
         try{
             Field declaredField = obj.getClass().getDeclaredField(fieldName);
             boolean accessible = declaredField.isAccessible();
+            declaredField.setAccessible(true);
             F result = (F)declaredField.get(obj);
             declaredField.setAccessible(accessible);
             return result;
