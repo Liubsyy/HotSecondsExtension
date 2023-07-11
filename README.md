@@ -1,3 +1,9 @@
+
+# 这个项目先不用动，待一切就绪后再开发，敬请期待
+# 这个项目先不用动，待一切就绪后再开发，敬请期待
+# 这个项目先不用动，待一切就绪后再开发，敬请期待
+================================================================================
+
 # HotSecondsServer 插件扩展通用包
 
 这个工程主要是用于扩展[HotSeconds](https://github.com/thanple/HotSecondsIDEA)热部署逻辑，兼容更多的第三方开源框架，热部署第三方框架说简单也简单，说复杂也复杂，简单的点是，只要懂框架原理就能按照加载的原理重新增量加载/注册即可（先清理缓存），复杂的点是，需要考虑每个版本每个框架在不同的场景下的兼容性，需要花费一定的时间和精力。大家可直接Fork项目提交代码，后续再合并一下，众人拾柴火焰高，本插件的理念是：一切皆可热部署。
@@ -21,6 +27,7 @@
 |----------|---------------------------------------|--------------|
 | Velocity | com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear | 刷新html缓存     |
 | MyBatis | com.liubs.hotseconds.extension.container.MyBatisBeanRefresh | 新增mapper类，新增xml热部署     |
+| MyBatisPlus | 同MyBatis | 同MyBatis     |
 
 <br>
 
