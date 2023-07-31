@@ -12,8 +12,9 @@
 ## 插件内核已支持
 | 开源组件                                         | 范围                              |
 |----------------------------------------------|---------------------------------|
+| Java                                       | 修改代码，新增字段，新增方法，新增类，修改动态代理类 |
 | Spring                                       | 包括Spring，SpringMVC，SpringBoot生态 |
-| MyBatis                                      | 支持mapper新增/修改函数, 修改xml文件(扩展包已支持新增mapper和xml)  |
+| MyBatis                                      | 支持mapper修改xml文件(扩展包已支持新增mapper和xml)  |
 | MyBatis Plus                                 | 同MyBatis                        |
 | Hibernate                                    | 支持Hibernate2和Hibernate3         |
 | Freemarker<br/>Thymeleaf<br/>Velocity-Spring | 刷新缓存                            |
