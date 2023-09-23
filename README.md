@@ -33,7 +33,6 @@
 | Spring                                       | 包括Spring，SpringMVC，SpringBoot生态 |
 | MyBatis                                      | 支持mapper修改xml文件(扩展包已支持新增mapper和xml)  |
 | MyBatis Plus                                 | 同MyBatis                        |
-| Hibernate                                    | 支持Hibernate2和Hibernate3         |
 | Freemarker<br/>Thymeleaf<br/>Velocity-Spring | 刷新缓存                            |
 
 ## 本扩展包已支持
