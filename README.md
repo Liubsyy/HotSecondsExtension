@@ -9,7 +9,8 @@
 
 ## 扩展包使用
 
-1. pom引用本工程的包
+
+1. 先确保HotSecondsServer版本>=HotSecondsServer-beat2，然后在maven 的pom.xml引用本工程的包
    ```
    <dependency>
       <groupId>io.github.liubsyy</groupId>
@@ -45,12 +46,6 @@
 <br>
 
 # 扩展包开发流程
-
-## 准备条件
-请确保HotSecondsServer版本>=****HotSecondsServer-beat2****，然后再使用此扩展包
-<br>
-
-
 
 ## 开发步骤
 
