@@ -20,7 +20,7 @@
    <dependency>
       <groupId>io.github.liubsyy</groupId>
       <artifactId>HotSecondsExtension</artifactId>
-      <version>最新版本</version>
+      <version>1.0.0</version>
    </dependency>
    ```
 
