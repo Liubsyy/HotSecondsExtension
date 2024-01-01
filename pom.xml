@@ -6,7 +6,7 @@
 
     <groupId>io.github.liubsyy</groupId>
     <artifactId>HotSecondsExtension</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>HotSecondsExtension</name>
     <url>https://github.com/Liubsyy/HotSecondsExtension</url>
@@ -50,6 +50,14 @@
     <!-- 以下optional设置为true，这样引用方就不会间接依赖里面的包 -->
     <dependencies>
 
+
+        <!-- 获取Class的所有对象实例，不用在构造函数插入字节码来获取某个对象 -->
+        <dependency>
+            <groupId>io.github.liubsyy</groupId>
+            <artifactId>FindInstancesOfClass</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -84,6 +92,26 @@
                     <groupId>org.javassist</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.13.5</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.5</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.13.5</version>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
