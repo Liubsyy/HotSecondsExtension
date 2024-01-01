@@ -28,17 +28,17 @@ public class SpringMVCJacksonCacheClear implements IHotExtHandler {
     @Override
     public void afterHandle(ClassLoader classLoader, Class<?> classz, String path, byte[] content) {
 
-        if(null == classToSerializerMaps) {
+        if(null == classToSerializerMaps || classToSerializerMaps.isEmpty()) {
             classToSerializerMaps = InstancesOfClass.getInstanceList(ReadOnlyClassToSerializerMap.class);
         }
 
-        if(null == objectMappers) {
+        if(null == objectMappers || objectMappers.isEmpty()) {
             objectMappers = InstancesOfClass.getInstanceList(ObjectMapper.class);
         }
-        if(null == serializerCaches) {
+        if(null == serializerCaches || serializerCaches.isEmpty()) {
             serializerCaches = InstancesOfClass.getInstanceList(SerializerCache.class);
         }
-        if(null == deserializerCaches) {
+        if(null == deserializerCaches || deserializerCaches.isEmpty()) {
             deserializerCaches = InstancesOfClass.getInstanceList(DeserializerCache.class);
         }
 
