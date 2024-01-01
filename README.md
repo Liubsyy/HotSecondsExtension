@@ -21,7 +21,7 @@
    <dependency>
       <groupId>io.github.liubsyy</groupId>
       <artifactId>HotSecondsExtension</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
    </dependency>
    ```
 
@@ -49,6 +49,7 @@
 | Velocity | com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear | 刷新html缓存     |
 | MyBatis | com.liubs.hotseconds.extension.container.MyBatisBeanRefresh | 新增mapper类，新增xml热部署     |
 | MyBatisPlus | 同MyBatis | 同MyBatis     |
+| SpringMVC json |com.liubs.hotseconds.extension.cache.SpringMVCJacksonCacheClear | SpringMVC json缓存清除 | 
 
 <br>
 
