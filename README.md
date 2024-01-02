@@ -16,7 +16,7 @@
 ## 扩展包使用
 
 
-1. 先确保HotSecondsServer版本>=HotSecondsServer-beat2，然后在maven 的pom.xml引用本工程的包
+1. 首先在maven 的pom.xml引用本工程的包
    ```
    <dependency>
       <groupId>io.github.liubsyy</groupId>
@@ -25,7 +25,7 @@
    </dependency>
    ```
 
-2. 在hot-seconds-remote.xml中配置 com.liubs.hotseconds.extension.AutoChoose，会自动智能选择需要的扩展组件，然后启动项目即可
+2. 然后在hot-seconds-remote.xml中配置 com.liubs.hotseconds.extension.AutoChoose，会自动智能选择需要的扩展组件，然后启动项目即可
    ```
     <dev-ext>
         <classname>com.liubs.hotseconds.extension.AutoChoose</classname>
