@@ -21,7 +21,7 @@
    <dependency>
       <groupId>io.github.liubsyy</groupId>
       <artifactId>HotSecondsExtension</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2-SNAPSHOT</version>
    </dependency>
    ```
 
