@@ -6,7 +6,7 @@
 
     <groupId>io.github.liubsyy</groupId>
     <artifactId>HotSecondsExtension</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.3</version>
 
     <name>HotSecondsExtension</name>
     <url>https://github.com/Liubsyy/HotSecondsExtension</url>
