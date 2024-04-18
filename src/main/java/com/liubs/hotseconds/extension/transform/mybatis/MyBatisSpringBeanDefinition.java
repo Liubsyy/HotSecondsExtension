@@ -2,6 +2,7 @@ package com.liubs.hotseconds.extension.transform.mybatis;
 
 import com.liubs.hotseconds.extension.annotations.RemoteMethodTest;
 import com.liubs.hotseconds.extension.container.MyBatisBeanRefresh;
+import com.liubs.hotseconds.extension.container.MyBatisPlusEntityRefresh;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.manager.AllExtensionsManager;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
@@ -36,6 +37,8 @@ public class MyBatisSpringBeanDefinition {
         }
         mapperScanner = scanner;
         AllExtensionsManager.getInstance().addHotExtHandler(new MyBatisBeanRefresh());
+        AllExtensionsManager.getInstance().addHotExtHandler(new MyBatisPlusEntityRefresh());
+
     }
 
 
