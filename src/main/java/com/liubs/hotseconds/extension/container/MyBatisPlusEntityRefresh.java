@@ -13,12 +13,16 @@ import com.liubs.hotseconds.extension.transform.mybatis.MyBatisSpringBeanDefinit
 import org.apache.ibatis.binding.MapperRegistry;
 import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.reflection.DefaultReflectorFactory;
+import org.apache.ibatis.reflection.Reflector;
+import org.apache.ibatis.reflection.ReflectorFactory;
 import org.apache.ibatis.session.Configuration;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
 
@@ -100,7 +104,7 @@ public class MyBatisPlusEntityRefresh implements IHotExtHandler {
                 final String typeKey = mapperClass.getName() + StringPool.DOT;
                 Set<String> mapperSet = mappedStatementsAll.keySet().stream().filter(ms -> ms.startsWith(typeKey)).collect(Collectors.toSet());
                 if (!mapperSet.isEmpty()) {
-                    List<String> methodNames = Arrays.stream("updateById,insert".split(",")).collect(Collectors.toList());
+                    List<String> methodNames = Arrays.stream("updateById,insert,selectById".split(",")).collect(Collectors.toList());
                    Iterator it =  mapperSet.iterator();
                    while (it.hasNext()){
                        String key = (String) it.next();
@@ -130,6 +134,13 @@ public class MyBatisPlusEntityRefresh implements IHotExtHandler {
 
                 //移除实体类对应的表缓存，否则不重新初始化TableInfo
                 TableInfoHelper.remove(classz);
+
+                //移除实体类对应的映射器缓存
+                DefaultReflectorFactory reflectorFactory = (DefaultReflectorFactory)mybatisConfiguration.getReflectorFactory();
+                Field reflectorMapField = DefaultReflectorFactory.class.getDeclaredField("reflectorMap");
+                reflectorMapField.setAccessible(true);
+                ConcurrentMap<Class<?>, Reflector> reflectorMap = (ConcurrentMap<Class<?>, Reflector> ) reflectorMapField.get(reflectorFactory);
+                reflectorMap.remove(classz);
 
                 //注入自定义方法
                 GlobalConfigUtils.getSqlInjector(configuration).inspectInject(builderAssistant, mapperClass);
@@ -169,6 +180,5 @@ public class MyBatisPlusEntityRefresh implements IHotExtHandler {
         }
         return mapperClass;
     }
-
 
 }
