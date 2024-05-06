@@ -6,7 +6,7 @@
 
     <groupId>io.github.liubsyy</groupId>
     <artifactId>HotSecondsExtension</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <name>HotSecondsExtension</name>
     <url>https://github.com/Liubsyy/HotSecondsExtension</url>
@@ -113,6 +113,22 @@
             <version>2.13.5</version>
             <optional>true</optional>
         </dependency>
+
+        <!-- modelmapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.2.0</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 
