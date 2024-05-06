@@ -23,12 +23,12 @@ public class ModelMapperRegistry {
     private static volatile Field keyType = null;
 
     /**
-     * 移除modelmapper的缓存： org.modelmapper.internal.TypeInfoRegistry.cache.type中的对应key
+     * 移除modelmapper的缓存： org.modelmapper.internal.TypeInfoRegistry.cache 中对应的 key
      */
     @OnClassLoad(className = "org.modelmapper.internal.TypeInfoRegistry")
     public static void registerTypeInfoRegistry() {
-        AllExtensionsManager.getInstance().addHotExtHandler((classLoader, classz, path, content) -> {
-            if(null == classz) {
+        AllExtensionsManager.getInstance().addHotExtHandler((classLoader, reloadClass, path, content) -> {
+            if(null == reloadClass) {
                 return;
             }
             try {
@@ -52,9 +52,10 @@ public class ModelMapperRegistry {
                     Iterator iterator = cache.keySet().iterator();
                     while(iterator.hasNext()) {
                         Object element = iterator.next();
-                        if(classz == keyType.get(element)){
+                        //移除热更新的类reloadClass的缓存
+                        if(reloadClass == keyType.get(element)){
                             iterator.remove();
-                            logger.info("remove cache {}",classz);
+                            logger.info("remove cache {}",reloadClass);
                         }
                     }
                 }
