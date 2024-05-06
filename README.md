@@ -2,12 +2,14 @@
 
 ## HotSecondsServer 插件扩展通用包
 
-这个工程主要是用于扩展[HotSeconds](https://github.com/Liubsyy/HotSecondsIDEA)热部署逻辑，兼容更多的第三方开源框架，热部署第三方框架说简单也简单，说复杂也复杂，简单的点是，只要懂框架原理就能按照加载的原理重新增量加载/注册即可（先清理缓存），复杂的点是，需要考虑每个版本每个框架在不同的场景下的兼容性，需要花费一定的时间和精力。大家可直接Fork项目提交代码，后续再合并一下，众人拾柴火焰高，本插件的理念是：一切皆可热部署。
+这个工程主要是用于扩展[HotSecondsServer](https://github.com/Liubsyy/HotSecondsIDEA)热部署逻辑，兼容更多的第三方开源框架，热部署第三方框架说简单也简单，说复杂也复杂，简单的点是，只要懂框架原理就能按照加载的原理重新增量加载/注册即可（先清理缓存），复杂的点是，需要考虑每个版本每个框架在不同的场景下的兼容性，需要花费一定的时间和精力。大家可直接Fork项目提交代码，后续再合并一下，众人拾柴火焰高，本插件的理念是：一切皆可热部署。
 <br><br>
 
 ### 扩展包更新范围
 | 版本             | 更新范围                                         |mvn发布时间|
 |-----------------|--------------------------------------------------|-----------------|
+| 1.0.4           | mybatis实体新增字段 <br> modelmapper清除缓存 |待发布|
+| 1.0.3           | spring5 findAnnotationOnBean为null问题 |2024-3-9|
 | 1.0.1           | SpringMVC json缓存清除 |2024-1-1|
 | 1.0.0           | MyBatis和MyBatis Plus支持新增mapper接口和xml配置文件 |2023-09-23|
 
@@ -33,16 +35,6 @@
    ```
 
 
-
-### 本扩展包已支持
-| 组件     | Class                                 | 范围           |
-|----------|---------------------------------------|--------------|
-| Velocity | com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear | 刷新html缓存     |
-| MyBatis | com.liubs.hotseconds.extension.container.MyBatisBeanRefresh | 新增mapper类，新增xml热部署     |
-| MyBatisPlus | 同MyBatis | 同MyBatis     |
-| SpringMVC json |com.liubs.hotseconds.extension.cache.SpringMVCJacksonCacheClear | SpringMVC json缓存清除 | 
-
-<br>
 
 ### 扩展包开发流程
 
