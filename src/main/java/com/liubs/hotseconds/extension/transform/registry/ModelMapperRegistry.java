@@ -20,6 +20,7 @@ public class ModelMapperRegistry {
     private static Logger logger = Logger.getLogger(ModelMapperRegistry.class);
 
     private static volatile Map cache = null;
+    private static volatile Field keyType = null;
 
     /**
      * 移除modelmapper的缓存： org.modelmapper.internal.TypeInfoRegistry.cache.type中的对应key
@@ -37,18 +38,21 @@ public class ModelMapperRegistry {
                             Field cacheField = Class.forName("org.modelmapper.internal.TypeInfoRegistry").getDeclaredField("cache");
                             cacheField.setAccessible(true);
                             cache = ((Map) cacheField.get(null));
+
+                            keyType= Class.forName("org.modelmapper.internal.TypeInfoRegistry$TypeInfoKey").getDeclaredField("type");
+                            keyType.setAccessible(true);
                         }
                     }
                 }
-                if(null == cache) {
+                if(null == cache || null == keyType) {
                     return;
                 }
 
                 synchronized (cache) {
                     Iterator iterator = cache.keySet().iterator();
                     while(iterator.hasNext()) {
-                        Object next = iterator.next();
-                        if(classz == ReflectUtil.getField(next,"type")){
+                        Object element = iterator.next();
+                        if(classz == keyType.get(element)){
                             iterator.remove();
                             logger.info("remove cache {}",classz);
                         }
