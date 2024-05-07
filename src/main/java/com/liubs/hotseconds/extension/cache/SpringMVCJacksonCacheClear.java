@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.DeserializerCache;
 import com.fasterxml.jackson.databind.ser.SerializerCache;
 import com.fasterxml.jackson.databind.ser.impl.ReadOnlyClassToSerializerMap;
-import com.liubs.findinstances.jvmti.InstancesOfClass;
 import com.liubs.hotseconds.extension.IHotExtHandler;
 import com.liubs.hotseconds.extension.logging.Logger;
+import com.liubs.hotseconds.extension.util.HeapInstancesHolder;
 import org.hotswap.agent.util.ReflectionHelper;
 
 import java.util.Arrays;
@@ -29,17 +29,17 @@ public class SpringMVCJacksonCacheClear implements IHotExtHandler {
     public void afterHandle(ClassLoader classLoader, Class<?> classz, String path, byte[] content) {
 
         if(null == classToSerializerMaps || classToSerializerMaps.isEmpty()) {
-            classToSerializerMaps = InstancesOfClass.getInstanceList(ReadOnlyClassToSerializerMap.class);
+            classToSerializerMaps = HeapInstancesHolder.getInstancesCache(ReadOnlyClassToSerializerMap.class);
         }
 
         if(null == objectMappers || objectMappers.isEmpty()) {
-            objectMappers = InstancesOfClass.getInstanceList(ObjectMapper.class);
+            objectMappers = HeapInstancesHolder.getInstancesCache(ObjectMapper.class);
         }
         if(null == serializerCaches || serializerCaches.isEmpty()) {
-            serializerCaches = InstancesOfClass.getInstanceList(SerializerCache.class);
+            serializerCaches = HeapInstancesHolder.getInstancesCache(SerializerCache.class);
         }
         if(null == deserializerCaches || deserializerCaches.isEmpty()) {
-            deserializerCaches = InstancesOfClass.getInstanceList(DeserializerCache.class);
+            deserializerCaches = HeapInstancesHolder.getInstancesCache(DeserializerCache.class);
         }
 
         try{
