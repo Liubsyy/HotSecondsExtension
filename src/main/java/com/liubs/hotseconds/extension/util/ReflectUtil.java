@@ -1,11 +1,8 @@
 package com.liubs.hotseconds.extension.util;
 
 import com.liubs.hotseconds.extension.logging.Logger;
-import org.hotswap.agent.util.spring.util.Assert;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 
 /**
  * @author Liubsyy
@@ -29,6 +26,24 @@ public class ReflectUtil {
 
         return null;
     }
-
+    public static<F,T> F getStaticField(Class<T> kclass, String fieldName)  {
+        try{
+            Field declaredField = kclass.getDeclaredField(fieldName);
+            declaredField.setAccessible(true);
+            F result = (F)declaredField.get(null);
+            return result;
+        }catch (Exception e) {
+            logger.error("ERROR in getField, kclass={},fieldName={}",kclass,fieldName);
+        }
+        return null;
+    }
+    public static<F,T> F getStaticField(String kclass, String fieldName)  {
+        try {
+            return getStaticField(Class.forName(kclass),fieldName);
+        } catch (Exception e) {
+            logger.error("ERROR in getField, kclass={},fieldName={}",kclass,fieldName);
+        }
+        return null;
+    }
 
 }

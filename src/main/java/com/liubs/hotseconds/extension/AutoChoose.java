@@ -20,7 +20,7 @@ public class AutoChoose implements IHotExtHandler {
         while(handlerIterator.hasNext()){
             IHotExtHandler hotExtHandler = handlerIterator.next();
             try{
-                logger.info("preHandle {}",hotExtHandler);
+                logger.info("preHandle {}",hotExtHandler.getClass().getSimpleName());
                 content = hotExtHandler.preHandle(classLoader,path,content);
             }catch (RemoteItException e) {
                 logger.error("Remove handler {}",e,hotExtHandler);
@@ -39,7 +39,7 @@ public class AutoChoose implements IHotExtHandler {
         while(handlerIterator.hasNext()){
             IHotExtHandler hotExtHandler = handlerIterator.next();
             try{
-                logger.info("afterHandle {}",hotExtHandler);
+                logger.info("afterHandle {}",hotExtHandler.getClass().getSimpleName());
                 hotExtHandler.afterHandle(classLoader,classz,path,content);
             }catch (RemoteItException e) {
                 logger.error("Remove handler {}",e,hotExtHandler);
