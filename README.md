@@ -19,7 +19,7 @@
 
 
 1. 首先在maven 的pom.xml引用本工程的包
-   ```
+   ```xml
    <dependency>
       <groupId>io.github.liubsyy</groupId>
       <artifactId>HotSecondsExtension</artifactId>
@@ -28,7 +28,7 @@
    ```
 
 2. 然后在hot-seconds-remote.xml中配置 com.liubs.hotseconds.extension.AutoChoose，会自动智能选择需要的扩展组件，然后启动项目即可
-   ```
+   ```xml
     <dev-ext>
         <classname>com.liubs.hotseconds.extension.AutoChoose</classname>
     </dev-ext>
