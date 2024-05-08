@@ -4,7 +4,9 @@ import com.liubs.hotseconds.extension.annotations.ClassTransform;
 import com.liubs.hotseconds.extension.annotations.OnClassLoad;
 import com.liubs.hotseconds.extension.cache.FastJson2CacheClear;
 import com.liubs.hotseconds.extension.cache.FastJsonCacheClear;
+import com.liubs.hotseconds.extension.holder.InstancesHolder;
 import com.liubs.hotseconds.extension.manager.AllExtensionsManager;
+import org.hotswap.agent.javassist.CtClass;
 
 /**
  * 包括fastjson和fastjson2
@@ -15,12 +17,14 @@ import com.liubs.hotseconds.extension.manager.AllExtensionsManager;
 public class FastJsonRegistry {
 
     @OnClassLoad(className = "com.alibaba.fastjson.serializer.SerializeConfig")
-    public static void registerFastJson() {
+    public static void registerFastJson(CtClass ctClass){
+        InstancesHolder.insertObjectCacheInConstructor(ctClass);
         AllExtensionsManager.getInstance().addHotExtHandler(new FastJsonCacheClear());
     }
 
     @OnClassLoad(className = "com.alibaba.fastjson2.JSONFactory")
-    public static void registerFastJson2(){
+    public static void registerFastJson2(CtClass ctClass){
+        InstancesHolder.insertObjectCacheInConstructor(ctClass);
         AllExtensionsManager.getInstance().addHotExtHandler(new FastJson2CacheClear());
     }
 }
