@@ -54,7 +54,5 @@
 
 [动态增强类(加载类时)](https://github.com/Liubsyy/HotSecondsExtension/blob/master/src/main/java/com/liubs/hotseconds/extension/transform/demo/TransformDemo.java)
 
-#### 获取某个类的对象实例
-无需代码维护具体的对象，也无需再构造函数插入字节码获取对象，可使用[FindInstancesOfClass](https://github.com/Liubsyy/FindInstancesOfClass)这个工具，直接根据类获取对象实例
 
 
