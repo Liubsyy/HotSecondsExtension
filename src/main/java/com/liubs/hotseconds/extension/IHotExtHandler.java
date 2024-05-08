@@ -18,6 +18,7 @@ public interface IHotExtHandler {
         return content;
     }
 
+
     /**
      * after you hotswap file
      * @param classLoader
@@ -26,4 +27,13 @@ public interface IHotExtHandler {
      * @param content
      */
     void afterHandle(ClassLoader classLoader, Class<?> classz, String path, byte[] content);
+
+
+    /**
+     * 是否同步刷新
+     * @return
+     */
+    default boolean isSyncRefresh(){
+        return false;
+    };
 }

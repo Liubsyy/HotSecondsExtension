@@ -40,8 +40,8 @@ public class AllExtensionsManager {
         return oldHandler;
     }
 
-    public Collection<IHotExtHandler> getAllHandlers(){
-        return allHandlers.values();
+    public Map<Class<?>, IHotExtHandler> getAllHandlers(){
+        return allHandlers;
     }
 
 

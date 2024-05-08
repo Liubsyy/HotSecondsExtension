@@ -1,6 +1,7 @@
 package com.liubs.hotseconds.extension.cache;
 
 import com.liubs.hotseconds.extension.IHotExtHandler;
+import com.liubs.hotseconds.extension.exception.RemoteItException;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.transform.registry.ModelMapperRegistry;
 import com.liubs.hotseconds.extension.util.ReflectUtil;
@@ -41,44 +42,48 @@ public class ModelMapperCacheClear implements IHotExtHandler {
         if(null == reloadClass) {
             return;
         }
-        try {
-            if(null == cache) {
-                synchronized (ModelMapperRegistry.class) {
-                    if(null == cache) {
-                        cache = ReflectUtil.getStaticField("org.modelmapper.internal.TypeInfoRegistry", "cache");
-                        MUTATOR_CACHE = ReflectUtil.getStaticField("org.modelmapper.internal.PropertyInfoRegistry", "MUTATOR_CACHE");
-                        ACCESSOR_CACHE = ReflectUtil.getStaticField("org.modelmapper.internal.PropertyInfoRegistry", "ACCESSOR_CACHE");
-                        FIELD_CACHE = ReflectUtil.getStaticField("org.modelmapper.internal.PropertyInfoRegistry", "FIELD_CACHE");
 
+        if(null == cache) {
+            synchronized (ModelMapperRegistry.class) {
+                if(null == cache) {
+                    cache = ReflectUtil.getStaticField("org.modelmapper.internal.TypeInfoRegistry", "cache");
+                    MUTATOR_CACHE = ReflectUtil.getStaticField("org.modelmapper.internal.PropertyInfoRegistry", "MUTATOR_CACHE");
+                    ACCESSOR_CACHE = ReflectUtil.getStaticField("org.modelmapper.internal.PropertyInfoRegistry", "ACCESSOR_CACHE");
+                    FIELD_CACHE = ReflectUtil.getStaticField("org.modelmapper.internal.PropertyInfoRegistry", "FIELD_CACHE");
+
+                    try {
                         typeInfoKeyField = Class.forName("org.modelmapper.internal.TypeInfoRegistry$TypeInfoKey").getDeclaredField("type");
-                        typeInfoKeyField.setAccessible(true);
+                    } catch (NoSuchFieldException | ClassNotFoundException e) {
+                        throw new RemoteItException(e);
                     }
+                    typeInfoKeyField.setAccessible(true);
                 }
             }
-            if(null == cache || null == typeInfoKeyField) {
-                return;
-            }
+        }
+        if(null == cache || null == typeInfoKeyField) {
+            return;
+        }
 
-            Iterator iterator = cache.keySet().iterator();
-            boolean needClear = false;
-            while(iterator.hasNext()) {
-                Object element = iterator.next();
-                //热更新的类如果有缓存，则全部清除(有依赖关系)
+        Iterator iterator = cache.keySet().iterator();
+        boolean needClear = false;
+        while(iterator.hasNext()) {
+            Object element = iterator.next();
+            //热更新的类如果有缓存，则全部清除(有依赖关系)
+            try {
                 if(reloadClass == typeInfoKeyField.get(element)){
                     needClear = true;
                     break;
                 }
+            } catch (IllegalAccessException e) {
+                throw new RemoteItException(e);
             }
+        }
 
-            if(needClear) {
-                cache.clear();
-                MUTATOR_CACHE.clear();
-                ACCESSOR_CACHE.clear();
-                FIELD_CACHE.clear();
-            }
-
-        } catch (Exception e) {
-            logger.error("Refresh TypeInfoRegistry err",e);
+        if(needClear) {
+            cache.clear();
+            MUTATOR_CACHE.clear();
+            ACCESSOR_CACHE.clear();
+            FIELD_CACHE.clear();
         }
     }
 
