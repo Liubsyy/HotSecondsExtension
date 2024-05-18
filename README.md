@@ -8,7 +8,7 @@
 ### 扩展包更新范围
 | 版本             | 更新范围                                         |mvn发布时间|
 |-----------------|--------------------------------------------------|-----------------|
-| 1.0.4           | fastjson/gson/jackson支持 <br> mybatis实体新增字段 <br> modelmapper清除缓存 |待发布|
+| 1.0.4           | fastjson/gson/jackson支持 <br> mybatis实体新增字段 <br> modelmapper清除缓存 |2024-5-18|
 | 1.0.3           | spring5 findAnnotationOnBean为null问题 |2024-3-9|
 | 1.0.1           | SpringMVC json缓存清除 |2024-1-1|
 | 1.0.0           | MyBatis和MyBatis Plus支持新增mapper接口和xml配置文件 |2023-09-23|
@@ -23,7 +23,7 @@
    <dependency>
       <groupId>io.github.liubsyy</groupId>
       <artifactId>HotSecondsExtension</artifactId>
-      <version>1.0.3</version>
+      <version>1.0.4</version>
    </dependency>
    ```
 
