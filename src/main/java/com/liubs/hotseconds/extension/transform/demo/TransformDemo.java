@@ -3,7 +3,7 @@ package com.liubs.hotseconds.extension.transform.demo;
 import com.liubs.hotseconds.extension.annotations.RemoteMethodTest;
 import com.liubs.hotseconds.extension.annotations.ClassTransform;
 import com.liubs.hotseconds.extension.annotations.OnClassLoad;
-import org.hotswap.agent.javassist.*;
+import javassist.*;
 
 /**
  * @author Liubsyy

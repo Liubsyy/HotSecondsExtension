@@ -6,7 +6,7 @@ import com.liubs.hotseconds.extension.cache.JacksonCacheClear;
 import com.liubs.hotseconds.extension.holder.InstancesHolder;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.manager.AllExtensionsManager;
-import org.hotswap.agent.javassist.CtClass;
+import javassist.CtClass;
 
 /**
  * @author Liubsyy

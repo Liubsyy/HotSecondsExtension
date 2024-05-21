@@ -7,7 +7,6 @@ import com.liubs.hotseconds.extension.transform.mybatis.MyBatisSpringBeanDefinit
 import com.liubs.hotseconds.extension.util.ReflectUtil;
 import org.apache.ibatis.session.Configuration;
 import org.hotswap.agent.plugin.spring.scanner.ClassPathBeanDefinitionScannerAgent;
-import org.hotswap.agent.util.ReflectionHelper;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -62,7 +61,7 @@ public class MyBatisBeanRefresh implements IHotExtHandler {
             }
 
             //bean name
-            BeanNameGenerator beanNameGenerator = (BeanNameGenerator) ReflectionHelper.get(MyBatisSpringBeanDefinition.getMapperScanner(), "beanNameGenerator");
+            BeanNameGenerator beanNameGenerator = (BeanNameGenerator) ReflectUtil.get(MyBatisSpringBeanDefinition.getMapperScanner(), "beanNameGenerator");
             BeanDefinitionRegistry registry = ReflectUtil.getField(scannerAgent,"registry");
             String beanName = beanNameGenerator.generateBeanName(beanDefinition, registry);
 

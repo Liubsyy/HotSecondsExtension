@@ -3,9 +3,9 @@ package com.liubs.hotseconds.extension.transform.mybatis;
 import com.liubs.hotseconds.extension.annotations.ClassTransform;
 import com.liubs.hotseconds.extension.annotations.OnClassLoad;
 import com.liubs.hotseconds.extension.logging.Logger;
-import org.hotswap.agent.javassist.ClassPool;
-import org.hotswap.agent.javassist.CtClass;
-import org.hotswap.agent.javassist.CtConstructor;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtConstructor;
 
 
 /**

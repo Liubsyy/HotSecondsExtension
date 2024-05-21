@@ -2,8 +2,8 @@ package com.liubs.hotseconds.extension.holder;
 
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.manager.AllExtensionsManager;
-import org.hotswap.agent.javassist.CtClass;
-import org.hotswap.agent.javassist.CtConstructor;
+import javassist.CtClass;
+import javassist.CtConstructor;
 
 import java.util.*;
 

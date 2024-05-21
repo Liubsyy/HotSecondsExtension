@@ -3,9 +3,9 @@ package com.liubs.hotseconds.extension.patch;
 import com.liubs.hotseconds.extension.annotations.ClassTransform;
 import com.liubs.hotseconds.extension.annotations.OnClassLoad;
 import com.liubs.hotseconds.extension.logging.Logger;
-import org.hotswap.agent.javassist.ClassPool;
-import org.hotswap.agent.javassist.CtClass;
-import org.hotswap.agent.javassist.CtMethod;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
 
 /**
  * 针对Spring5一些不兼容场景的补丁
