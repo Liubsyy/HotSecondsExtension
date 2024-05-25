@@ -8,6 +8,7 @@
 ### 扩展包更新范围
 | 版本             | 更新范围                                         |中央仓库发布时间|
 |-----------------|--------------------------------------------------|-----------------|
+| 2.0.0           | 支持HotSecondsServer7 |2024-5-25|
 | 1.0.4           | fastjson/gson/jackson支持 <br> mybatis实体新增字段 <br> modelmapper清除缓存 |2024-5-18|
 | 1.0.3           | spring5 findAnnotationOnBean为null问题 |2024-3-9|
 | 1.0.1           | SpringMVC json缓存清除 |2024-1-1|
