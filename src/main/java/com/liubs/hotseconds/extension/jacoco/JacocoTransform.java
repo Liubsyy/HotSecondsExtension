@@ -6,7 +6,6 @@ import com.liubs.hotseconds.extension.exception.RemoteItException;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.util.FileUtil;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -49,13 +48,15 @@ public class JacocoTransform implements IHotExtHandler {
                 Class<?> classFileDumperClass = Class.forName(internalPackageName + ".ClassFileDumper");
                 classFileDumper = InstancesOfClass.getInstanceList(classFileDumperClass,1).get(0);
                 dumpMethod = classFileDumperClass.getDeclaredMethod("dump", String.class, byte[].class);
+                dumpMethod.setAccessible(true);
             }
 
 
             if(null == instrumenter) {
-                Class<?> instrumenterClass = Class.forName(internalPackageName+".Instrumenter");
+                Class<?> instrumenterClass = Class.forName(internalPackageName+".core.instr.Instrumenter");
                 instrumenter = InstancesOfClass.getInstanceList(instrumenterClass,1).get(0);
                 instrumentMethod = instrumenterClass.getDeclaredMethod("instrument",byte[].class,String.class);
+                instrumentMethod.setAccessible(true);
             }
 
         }catch (Exception e) {
@@ -81,15 +82,7 @@ public class JacocoTransform implements IHotExtHandler {
             Class<?> agentClass = Class.forName("org.jacoco.agent.rt.RT");
             Method getAgentMethod = agentClass.getDeclaredMethod("getAgent");
             Object agent = getAgentMethod.invoke(null);
-
-            // 获取 JaCoCo 内部类包的名称
-            Field runtimeDataField = agent.getClass().getDeclaredField("runtimeData");
-            runtimeDataField.setAccessible(true);
-            Object runtimeData = runtimeDataField.get(agent);
-
-            // 反射访问 internal 包名
-            String internalPackageName = runtimeData.getClass().getPackage().getName();
-
+            String internalPackageName = agent.getClass().getPackage().getName();
             return internalPackageName;
 
         }catch (Exception e){
