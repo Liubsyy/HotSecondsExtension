@@ -19,7 +19,7 @@ public class AllExtensionsManager {
     private static AllExtensionsManager instance = new AllExtensionsManager();
     static {
         //如果某个handler 100%要注册，写在这
-        //instance.addHotExtHandler(new com.liubs.hotseconds.extension.cache.VelocityHtmlCacheClear());
+        instance.addHotExtHandler(new com.liubs.hotseconds.extension.jacoco.JacocoTransform());
     }
     public static AllExtensionsManager getInstance() {
         return instance;
