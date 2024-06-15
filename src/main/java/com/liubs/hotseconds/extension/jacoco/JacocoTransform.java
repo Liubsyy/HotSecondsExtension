@@ -6,6 +6,7 @@ import com.liubs.hotseconds.extension.exception.RemoteItException;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.util.FileUtil;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -91,5 +92,19 @@ public class JacocoTransform implements IHotExtHandler {
     }
 
     @Override
-    public void afterHandle(ClassLoader classLoader, Class<?> classz, String path, byte[] content) {}
+    public void afterHandle(ClassLoader classLoader, Class<?> classz, String path, byte[] content) {
+        try{
+            if(null == classLoader || null == classz) {
+                return;
+            }
+
+            //清空jacoco
+            Field jacocoData = classz.getDeclaredField("$jacocoData");
+            jacocoData.setAccessible(true);
+            jacocoData.set(null,null);
+            jacocoData.setAccessible(false);
+
+        }catch (Throwable e) {
+        }
+    }
 }
