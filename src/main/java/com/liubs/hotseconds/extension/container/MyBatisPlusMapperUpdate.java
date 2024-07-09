@@ -17,7 +17,7 @@ public class MyBatisPlusMapperUpdate {
         }
         MybatisConfiguration plugConfiguration = (MybatisConfiguration)configuration;
 
-        plugConfiguration.addNewMapper(mapperClass);
+        plugConfiguration.addMapper(mapperClass);
     }
 
 

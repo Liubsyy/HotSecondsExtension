@@ -51,11 +51,11 @@
     <dependencies>
 
 
-        <!-- 获取Class的所有对象实例，不用在构造函数插入字节码来获取某个对象 -->
+        <!-- 获取Class的所有对象实例 -->
         <dependency>
             <groupId>io.github.liubsyy</groupId>
             <artifactId>FindInstancesOfClass</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </dependency>
 
         <dependency>
@@ -148,6 +148,13 @@
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
             <version>2.0.49</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.4.0</version>
             <optional>true</optional>
         </dependency>
 
