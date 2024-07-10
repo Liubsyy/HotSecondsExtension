@@ -25,7 +25,7 @@ public class MyBatisRefresh implements IHotExtHandler {
 
     @Override
     public byte[] preHandle(ClassLoader classLoader, String path, byte[] content) {
-        if(!hasCleared) {
+        if(hasCleared) {
             return content;
         }
 

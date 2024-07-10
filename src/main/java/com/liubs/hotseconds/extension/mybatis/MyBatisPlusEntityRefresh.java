@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.liubs.hotseconds.extension.IHotExtHandler;
+import com.liubs.hotseconds.extension.holder.InstancesHolder;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.transform.mybatis.MyBatisClassPathMapperScannerPatch;
 import com.liubs.hotseconds.extension.transform.mybatis.MyBatisSpringBeanDefinition;
@@ -55,12 +56,12 @@ public class MyBatisPlusEntityRefresh implements IHotExtHandler {
         return false;
     }
 
-    public Configuration getConfiguration(ArrayList<Configuration> configurations){
+    public Configuration getConfiguration(Collection<Configuration> configurations){
         Configuration configuration = configurations.stream().filter(c->c.getClass() == MybatisConfiguration.class).findFirst().orElse(null);
         if(configuration != null){
            return configuration;
         }
-        return configurations.get(0);
+        return configurations.iterator().next();
     }
 
     @Override
@@ -79,14 +80,17 @@ public class MyBatisPlusEntityRefresh implements IHotExtHandler {
              * 参考 AbstractSqlInjector.inspectInject 方法
              *
              */
-            Class<?> sqlSessionFactoryClz = Class.forName("org.apache.ibatis.session.defaults.DefaultSqlSessionFactory",true,classLoader);
-            Field staticConfiguration = null;
-            try{
-                staticConfiguration = sqlSessionFactoryClz.getDeclaredField("_staticConfiguration");
-            }catch (NoSuchFieldException ex) {
-                return;
-            }
-            Configuration configuration =  getConfiguration((ArrayList<Configuration>)staticConfiguration.get(null));
+//            Class<?> sqlSessionFactoryClz = Class.forName("org.apache.ibatis.session.defaults.DefaultSqlSessionFactory",true,classLoader);
+//            Field staticConfiguration = null;
+//            try{
+//                staticConfiguration = sqlSessionFactoryClz.getDeclaredField("_staticConfiguration");
+//            }catch (NoSuchFieldException ex) {
+//                return;
+//            }
+            Set<Configuration> configurations = InstancesHolder.getInstances(Configuration.class);
+            Configuration configuration =  getConfiguration(configurations);
+
+
             if(configuration instanceof MybatisConfiguration){
                 MybatisConfiguration mybatisConfiguration = (MybatisConfiguration)configuration;
                 Class mapperClass =  getMapperClass( mybatisConfiguration, classz);

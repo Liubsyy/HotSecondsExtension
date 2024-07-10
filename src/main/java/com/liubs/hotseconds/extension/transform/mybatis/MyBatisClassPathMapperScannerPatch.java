@@ -41,7 +41,7 @@ public class MyBatisClassPathMapperScannerPatch {
 
     @OnClassLoad(className = "org.apache.ibatis.session.Configuration")
     public static void registerConfiguration(CtClass ctClass){
-        InstancesHolder.insertObjectCacheInConstructor(ctClass);
+        InstancesHolder.insertObjectCacheInConstructorWithBaseClassKey(ctClass);
         AllExtensionsManager.getInstance().addHotExtHandler(new MyBatisRefresh());
     }
 }

@@ -1,6 +1,7 @@
 package com.liubs.hotseconds.extension.mybatis;
 
 import com.liubs.hotseconds.extension.IHotExtHandler;
+import com.liubs.hotseconds.extension.holder.InstancesHolder;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.transform.mybatis.MyBatisClassPathMapperScannerPatch;
 import com.liubs.hotseconds.extension.transform.mybatis.MyBatisSpringBeanDefinition;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.support.BeanNameGenerator;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Set;
 
 
 /**
@@ -37,14 +39,19 @@ public class MyBatisBeanRefresh implements IHotExtHandler {
             return;
         }
         try {
-            Class<?> sqlSessionFactoryClz = Class.forName("org.apache.ibatis.session.defaults.DefaultSqlSessionFactory",true,classLoader);
-            Field staticConfiguration = null;
-            try{
-                staticConfiguration = sqlSessionFactoryClz.getDeclaredField("_staticConfiguration");
-            }catch (NoSuchFieldException ex) {
+//            Class<?> sqlSessionFactoryClz = Class.forName("org.apache.ibatis.session.defaults.DefaultSqlSessionFactory",true,classLoader);
+//            Field staticConfiguration = null;
+//            try{
+//                staticConfiguration = sqlSessionFactoryClz.getDeclaredField("_staticConfiguration");
+//            }catch (NoSuchFieldException ex) {
+//                return;
+//            }
+//            Configuration configuration = ((ArrayList<Configuration>)staticConfiguration.get(null)).get(0);
+            Set<Configuration> configurations = InstancesHolder.getInstances(Configuration.class);
+            if(configurations.isEmpty()){
                 return;
             }
-            Configuration configuration = ((ArrayList<Configuration>)staticConfiguration.get(null)).get(0);
+            Configuration configuration = configurations.iterator().next();
 
 
             //这里用类字符串判断是否mybatis plus，不引用mybatis plus的类，避免应用程序没有用mybatis plus而报错

@@ -38,6 +38,10 @@ public class InstancesHolder {
     }
 
 
+    /**
+     * 插入的是当前类为key
+     * @param ctClass
+     */
     public static void insertObjectCacheInConstructor(CtClass ctClass) {
         try{
             String className = ctClass.getName();
@@ -58,11 +62,49 @@ public class InstancesHolder {
 
     }
 
+    /**
+     * 插入的是以ctClass为基类的key
+     * @param ctClass
+     */
+    public static void insertObjectCacheInConstructorWithBaseClassKey(CtClass ctClass) {
+        try{
+            String className = ctClass.getName();
+
+            //只插桩一次
+            if(alreadyHold.contains(className)) {
+                return;
+            }
+            for (CtConstructor constructor : ctClass.getDeclaredConstructors()) {
+                String src = "{com.liubs.hotseconds.extension.holder.InstancesHolder.insertHolder(\""+ctClass.getName()+"\",this);}";
+                constructor.insertAfter(src);
+            }
+
+            alreadyHold.add(className);
+        }catch (Exception e) {
+            logger.error("insertObjectCacheInConstructor err,class={}",e,ctClass.getName());
+        }
+
+    }
+
     public static void insertHolder(Object obj){
         synchronized (instancesHolder) {
             //使用Weak引用
             Set<Object> objects = instancesHolder.computeIfAbsent(obj.getClass(), k -> Collections.newSetFromMap(new WeakHashMap<>()));
             objects.add(obj);
+        }
+    }
+    public static void insertHolder(String className,Object obj){
+        synchronized (instancesHolder) {
+            //使用Weak引用
+            Set<Object> objects = null;
+            try {
+                objects = instancesHolder.computeIfAbsent(Class.forName(className),
+                        k -> Collections.newSetFromMap(new WeakHashMap<>()));
+                objects.add(obj);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }
