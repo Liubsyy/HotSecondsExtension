@@ -30,6 +30,12 @@ public class DynamicDataSourcePatch {
             }
             propertiesField.setAccessible(true);
 
+            // 移除 final 修饰符的限制
+            Field modifiersField = Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(propertiesField, propertiesField.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+
+
             for(Class<?> kclass = source.getClass(); kclass != null; kclass = kclass.getSuperclass()) {
                 if (kclass == DynamicDataSourceCreatorAutoConfiguration.class) {
 
