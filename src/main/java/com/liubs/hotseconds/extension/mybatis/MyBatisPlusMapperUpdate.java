@@ -1,4 +1,4 @@
-package com.liubs.hotseconds.extension.container;
+package com.liubs.hotseconds.extension.mybatis;
 
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import org.apache.ibatis.session.Configuration;

@@ -2,7 +2,10 @@ package com.liubs.hotseconds.extension.transform.mybatis;
 
 import com.liubs.hotseconds.extension.annotations.ClassTransform;
 import com.liubs.hotseconds.extension.annotations.OnClassLoad;
+import com.liubs.hotseconds.extension.holder.InstancesHolder;
 import com.liubs.hotseconds.extension.logging.Logger;
+import com.liubs.hotseconds.extension.manager.AllExtensionsManager;
+import com.liubs.hotseconds.extension.mybatis.MyBatisRefresh;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
@@ -34,4 +37,11 @@ public class MyBatisClassPathMapperScannerPatch {
         }
     }
 
+
+
+    @OnClassLoad(className = "org.apache.ibatis.session.Configuration")
+    public static void registerConfiguration(CtClass ctClass){
+        InstancesHolder.insertObjectCacheInConstructor(ctClass);
+        AllExtensionsManager.getInstance().addHotExtHandler(new MyBatisRefresh());
+    }
 }

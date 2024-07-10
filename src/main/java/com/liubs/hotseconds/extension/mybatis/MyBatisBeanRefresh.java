@@ -1,4 +1,4 @@
-package com.liubs.hotseconds.extension.container;
+package com.liubs.hotseconds.extension.mybatis;
 
 import com.liubs.hotseconds.extension.IHotExtHandler;
 import com.liubs.hotseconds.extension.logging.Logger;

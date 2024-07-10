@@ -1,8 +1,8 @@
 package com.liubs.hotseconds.extension.transform.mybatis;
 
 import com.liubs.hotseconds.extension.annotations.RemoteMethodTest;
-import com.liubs.hotseconds.extension.container.MyBatisBeanRefresh;
-import com.liubs.hotseconds.extension.container.MyBatisPlusEntityRefresh;
+import com.liubs.hotseconds.extension.mybatis.MyBatisBeanRefresh;
+import com.liubs.hotseconds.extension.mybatis.MyBatisPlusEntityRefresh;
 import com.liubs.hotseconds.extension.logging.Logger;
 import com.liubs.hotseconds.extension.manager.AllExtensionsManager;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
